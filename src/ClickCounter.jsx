@@ -1,0 +1,16 @@
+import React from "react";
+import withCounter from "./HOC/withCounter";
+
+const ClickCounter = (props) => {
+  // eslint-disable-next-line react/prop-types
+  const { count, incrementCount } = props;
+  return (
+    <div>
+      <button type="button" onClick={incrementCount}>
+        Clicked{count}times
+      </button>
+    </div>
+  );
+};
+
+export default withCounter(ClickCounter);
