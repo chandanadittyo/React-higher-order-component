@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 
 const withCounter = (OriginalComponent) => {
-  let newComponent = () => {
-    const { count, setCount } = useState(0);
+  const newComponent = () => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [count, setCount] = useState(0);
+    let incrementCount = () => {
+      setCount(count + 1);
+    };
 
-    setCount(count + 1);
+    return (
+      <div>
+        <OriginalComponent incrementCount={incrementCount} count={count} />
+      </div>
+    );
   };
-
-  return (
-    <div>
-      <OriginalComponent count={total} incrementCount={incrementCount} />
-    </div>
-  );
+  return newComponent;
 };
 
 export default withCounter;
